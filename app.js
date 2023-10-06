@@ -9,11 +9,8 @@ const isJwtExpired =require ('jwt-check-expiration');
 require ('dotenv').config();
 const fetch =require('node-fetch');
 const userRoutes = require('./routes/user');
-const compconfRoutes = require('./routes/compconf');
 const communRoutes = require('./routes/communinfo');
 const statisticsRoutes = require('./routes/statistics');
-const reclamationRoutes = require('./routes/reclamation');
-const motifreclamationRoutes = require('./routes/motifreclamation');
 const habilitationRoutes = require('./routes/habilitation');
 
 const cron = require("node-cron");
@@ -129,9 +126,6 @@ app.use((req, res, next) => {
       makeRequest();
  });*/
  app.use('/api/users', userRoutes);
- app.use('/api/compconfs', compconfRoutes);
- app.use('/api/reclamations', reclamationRoutes);
- app.use('/api/motifreclamation', motifreclamationRoutes);
  app.use('/api/habilitation', habilitationRoutes);
 
  app.use('/api/commun', communRoutes);
