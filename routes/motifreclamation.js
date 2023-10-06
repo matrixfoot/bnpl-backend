@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const motifreclamationController = require('../controllers/motifreclamation');
+const userController = require('../controllers/user');
+const multer = require('../middleware/multer-config3');
+router.post('/', userController.allowIfLoggedin, userController.grantAccess('readAny', 'motifreclamation'),motifreclamationController.createmotifreclamation);
+router.get('/', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'motifreclamation'), motifreclamationController.getmotifreclamations);
+router.get('/:id', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'motifreclamation'),motifreclamationController.getmotifreclamationbyid);
+router.put('/:id', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'motifreclamation'),motifreclamationController.updatemotifreclamation);
+router.delete('/:id', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'motifreclamation'),motifreclamationController.deletemotifreclamations);
+router.delete('/', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'motifreclamation'),motifreclamationController.deletemotifreclamationss);
+module.exports = router;

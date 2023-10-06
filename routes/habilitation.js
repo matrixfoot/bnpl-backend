@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const habilitationController = require('../controllers/habilitation');
+const userController = require('../controllers/user');
+const multer = require('../middleware/multer-config3');
+router.post('/', userController.allowIfLoggedin, userController.grantAccess('readAny', 'habilitation'),habilitationController.createhabilitation);
+router.get('/', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'habilitation'), habilitationController.gethabilitations);
+router.get('/:id', userController.allowIfLoggedin, userController.grantAccess('readOwn', 'habilitation'),habilitationController.gethabilitationbyid);
+router.put('/:id', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'habilitation'),habilitationController.updatehabilitation);
+router.delete('/:id', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'habilitation'),habilitationController.deletehabilitations);
+router.delete('/', userController.allowIfLoggedin, userController.grantAccess('updateAny', 'habilitation'),habilitationController.deletehabilitationss);
+module.exports = router;
